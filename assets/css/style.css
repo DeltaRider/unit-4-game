@@ -1,0 +1,44 @@
+body, html {
+    height:100%;
+    width: 100%;
+
+}
+  
+* {
+    box-sizing: border-box;
+}
+  
+/* Site Background */
+.bg-image {
+    height:100%; 
+    background-color: #005B6E;
+    background-image: url("../images/dookemon-logo.png");
+}
+
+.header {
+    height: 60px;
+    background-color: #223155;
+    border-bottom: 5px solid black;
+    text-align: center;
+    box-shadow: 0px 6px 20px 1px #00C3EE;
+}
+
+.header p {
+    color: #FFFFFF;
+    padding-top: 22px;
+    font-size: 13px;
+}
+
+.container {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 646px;
+    background-color: #E5E5E5;
+    border-right: black solid 2px;
+    border-left: black solid 2px;
+    border-bottom: black solid 2px;
+    box-shadow: 0px 21px 25px 5px #00C3EE;
+    background-image: url("../images/game-board.png");
+    background-size: cover;
+}
