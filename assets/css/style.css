@@ -42,3 +42,26 @@ body, html {
     background-image: url("../images/game-board.png");
     background-size: cover;
 }
+
+@font-face {
+    font-family: maintext;
+    src: url(chalk-up.ttf);
+}
+
+#topbox {
+    width: 960px;
+    padding: 10px 30px 0px 30px;
+}
+
+#topbox p {
+    font-family: maintext;
+}
+
+#toptext {
+    display: inline;
+    font-family: maintext;
+}
+
+#toptext p {
+    font-family: maintext;
+}
