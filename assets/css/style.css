@@ -41,6 +41,7 @@ body, html {
     box-shadow: 0px 21px 25px 5px #00C3EE;
     background-image: url("../images/game-board.png");
     background-size: cover;
+    position: relative;
 }
 
 @font-face {
@@ -51,17 +52,25 @@ body, html {
 #topbox {
     width: 960px;
     padding: 10px 30px 0px 30px;
-}
-
-#topbox p {
-    font-family: maintext;
+    height: 130px;
 }
 
 #toptext {
     display: inline;
     font-family: maintext;
+    line-height: 18px;
 }
 
-#toptext p {
+#bottombox {
+    position: absolute;
+    width: 960px;
+    bottom: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 130px;
+}
+
+#bottomtext {
     font-family: maintext;
+    line-height: 18px;
 }
