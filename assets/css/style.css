@@ -62,12 +62,11 @@ body, html {
 }
 
 .bottombox {
-    position: absolute;
     width: 960px;
-    bottom: 0;
     padding-left: 30px;
     padding-right: 30px;
     height: 130px;
+    margin-top: 10px;
 }
 
 .bottomtext {
@@ -83,13 +82,12 @@ body, html {
 }
 
 .bottomboxTwo {
-    position: absolute;
     width: 960px;
-    bottom: 0;
     padding-left: 30px;
     padding-right: 30px;
     height: 130px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .toptextTwo {
@@ -100,8 +98,8 @@ body, html {
 
 .bottomtextTwo {
     font-family: maintext;
-    font-size: 35px;
-    margin-top: 40px;
+    font-size: 30px;
+    margin-top: 50px;
 }
 
 .midbox {
@@ -142,3 +140,57 @@ body, html {
     border-radius: 25px;
     box-shadow: 0px 0px 25px 5px rgb(41, 171, 226);
 }
+
+.popup-overlay{
+    /*Hides pop-up when there is no "active" class*/
+    visibility:hidden;
+    position:absolute;
+    background-color: #b0d5ef;
+    background-image: url("../images/gaming-pattern.png");
+    background-size: 462px auto;
+    background-repeat: repeat;
+    border:1px solid black;
+    width:80%;
+    height:100%;
+    left:10%; 
+  }
+
+  .popup-overlay.active{
+    /*displays pop-up when "active" class is present*/
+    visibility:visible;
+    text-align:center;
+  }
+
+  .popup-content {
+    /*Hides pop-up content when there is no "active" class */
+   visibility:hidden;
+  }
+
+  .popup-content.active {
+    /*Shows pop-up content when "active" class is present */
+    visibility:visible;
+  }
+
+  .choose, .exit {
+    display:inline-block;
+    vertical-align:middle;
+    border-radius:30px;
+    margin:.20rem;
+    font-size: 1rem;
+    color:#666666;
+    background:   #ffffff;
+    border:1px solid #666666;
+    text-decoration: none; 
+  }
+  
+  .choose:hover, .exit:hover {
+    border:1px solid #666666;
+    background:#666666;
+    color:#ffffff;
+    text-decoration: none;
+  }
+
+  .card img {
+    width: auto;
+    max-height: 600px;   
+  }
