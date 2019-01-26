@@ -49,19 +49,19 @@ body, html {
     src: url(chalk-up.ttf);
 }
 
-#topbox {
+.topbox {
     width: 960px;
     padding: 10px 30px 0px 30px;
     height: 130px;
 }
 
-#toptext {
+.toptext {
     display: inline;
     font-family: maintext;
     line-height: 18px;
 }
 
-#bottombox {
+.bottombox {
     position: absolute;
     width: 960px;
     bottom: 0;
@@ -70,7 +70,75 @@ body, html {
     height: 130px;
 }
 
-#bottomtext {
+.bottomtext {
     font-family: maintext;
     line-height: 18px;
+}
+
+.topboxTwo {
+    width: 960px;
+    padding: 10px 30px 0px 30px;
+    height: 130px;
+    text-align: center;
+}
+
+.bottomboxTwo {
+    position: absolute;
+    width: 960px;
+    bottom: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 130px;
+    text-align: center;
+}
+
+.toptextTwo {
+    font-family: maintext;
+    font-size: 75px;
+    margin-top: 20px;
+}
+
+.bottomtextTwo {
+    font-family: maintext;
+    font-size: 35px;
+    margin-top: 40px;
+}
+
+.midbox {
+    width: 955px;
+    height: 355px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.choice {
+    width: 233px;
+    height: 335px;
+    float: left;
+    border-radius: 25px;
+}
+
+.choice img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#cshadow:hover {
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px 5px rgba(255, 90, 56);
+}
+
+#dshadow:hover {
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px 5px rgba(57, 181, 74);
+}
+
+#hshadow:hover {
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px 5px rgba(255, 123, 172);
+}
+
+#pshadow:hover {
+    border-radius: 25px;
+    box-shadow: 0px 0px 25px 5px rgb(41, 171, 226);
 }
