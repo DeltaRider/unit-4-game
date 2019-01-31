@@ -107,6 +107,7 @@ body, html {
     height: 355px;
     margin-top: 15px;
     padding: 10px;
+    text-align: center;
 }
 
 .choice {
@@ -119,6 +120,65 @@ body, html {
 .choice img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.oppContain {
+    margin-left: 118px;
+}
+
+.opponents {
+    width: 233px;
+    height: 335px;
+    float: left;
+    border-radius: 25px;
+}
+
+.opponents img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.playContain {
+    margin-left: 235px;
+}
+
+.regPlay {
+    width: 233px;
+    height: 335px;
+    float: left;
+    border-radius: 25px;
+    background-color: #00C3EE;
+}
+
+.regPlay img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.bullpen {
+    height: 150px;
+    background-color: #666666;
+    margin-top: 10px;
+}
+
+.attack {
+    position:absolute;
+    left: 90px;
+    bottom: 300px;
+}
+
+#charCash {
+    position:absolute;
+    right: 518px;
+    bottom: 438px;
+    font-size: 20px;
+}
+
+#oppCash {
+    position:absolute;
+    right: 285px;
+    bottom: 438px;
+    font-size: 20px;
 }
 
 #cshadow:hover {
