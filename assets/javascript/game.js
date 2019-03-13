@@ -254,11 +254,50 @@ function chooseOppTwo(){
     $(".attack").on("click", function(){
         setTimeout(oppMusic, 1400);
         $(".topboxTwo").html(`<p class="toptextTwo">${character.name}'s Next Opponent!</p>`);
+        $(".container").prepend(`<!--Creates the popup body-->
+        <div class="popup-overlay">
+            <!--Creates the popup content-->
+            <div class="popup-content">
+                <div class="card"></div>
+                <!--popup's close button-->
+                <button class="choose">Choose</button>
+                <button class="exit">Exit</button>       
+            </div>
+        </div>`);
         $("#midbox").html(`<div class="oppContain"></div>`);
         for (i=0; i<availableChars.length; i++){
             $('.oppContain').append(`<div class="opponentsTwo">${availableChars[i].pop}</div>`);
         }
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">Now it's time to pick your second opponent!</p>`);
+    });
+    $(document).on("click", "#cshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-crackhead.png" alt="Crackhead">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        character = crackhead;
+    });
+    $(document).on("click", "#dshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-drugdealer.png" alt="Drug Dealer">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        character = dealer;
+    });
+    $(document).on("click", "#hshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-hoe.png" alt="Hoe">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        character = hoe;
+    });
+    $(document).on("click", "#pshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-pimp.png" alt="Pimp">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        character = pimp;
+    });
+    $(".exit").on("click", function(){
+        $(".popup-overlay, .popup-content").removeClass("active");
+    });
+    $(".choose").on("click", function(){
+        setTimeout(killMusic, 1400);
+        // $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
+        chooseOpp();
+        $(".popup-overlay, .popup-content").removeClass("active");
     });
 }
 
