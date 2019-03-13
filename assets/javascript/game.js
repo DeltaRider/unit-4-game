@@ -8,6 +8,7 @@ var oppAttackPower;
 var crackhead = {
     name: "Crackhead",
     image: `<img src="assets/images/dookemon-crackhead2.png" alt="Crackhead">`,
+    pop: `<img id="cshadow" src="assets/images/dookemon-crackhead.png" alt="Crackhead"></img>`,
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/cracksong.mp3" type="audio/mpeg"></audio>`,
     attack: "Sidewalk Defecation",
     power: "Stamina",
@@ -20,6 +21,7 @@ var crackhead = {
 var dealer = {
     name: "Drug Dealer",
     image: `<img src="assets/images/dookemon-drugdealer2.png" alt="Drug Dealer">`,
+    pop: `<img id="dshadow" src="assets/images/dookemon-drugdealer.png" alt="Drug Dealer">`,
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/dealersong.mp3" type="audio/mpeg"></audio>`,
     attack: "Slangin' Dope",
     power: "Hustlin",
@@ -30,6 +32,7 @@ var dealer = {
 var hoe = {
     name: "Hoe",
     image: `<img src="assets/images/dookemon-hoe2.png" alt="Hoe">`,
+    pop: `<img id="hshadow" src="assets/images/dookemon-hoe.png" alt="Hoe">`,
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/hoesong.mp3" type="audio/mpeg"></audio>`,
     attack: "Working Corners",
     power: "Ho'ing",
@@ -40,6 +43,7 @@ var hoe = {
 var pimp = {
     name: "Pimp",
     image: `<img src="assets/images/dookemon-pimp2.png" alt="Pimp">`,
+    pop: `<img id="pshadow" src="assets/images/dookemon-pimp.png" alt="Pimp">`,
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/pimpsong.mp3" type="audio/mpeg"></audio>`,
     attack: "Slap & Collect",
     power: "Shinin'",
@@ -50,6 +54,8 @@ var pimp = {
 var playerCash;
 var opponentCash;
 var playAttack = true;
+// var availableChars = ["Crackhead", "Drug Dealer", "Hoe", "Pimp"];
+var availableChars = [crackhead, dealer, hoe, pimp];
 
 function chooseChar(){
     document.onkeypress = function(e){
@@ -188,6 +194,8 @@ function opponents(){
     $(".choose").on("click", function(){
         setTimeout(killMusic, 1400);
         // $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
+        availableChars = availableChars.filter(e => e !== character);
+        availableChars = availableChars.filter(e => e !== firstOpp);
         play();
         $(".popup-overlay, .popup-content").removeClass("active");
     });
@@ -246,14 +254,11 @@ function chooseOppTwo(){
     $(".attack").on("click", function(){
         setTimeout(oppMusic, 1400);
         $(".topboxTwo").html(`<p class="toptextTwo">${character.name}'s Next Opponent!</p>`);
-        $("#midbox").html(`<div class="oppContain">
-        <div id="oppOne" class="opponents"></div>
-        <div id="oppTwo" class="opponents"></div>
-        <div id="oppThree" class="opponents"></div>
-        </div>
-        `);
+        $("#midbox").html(`<div class="oppContain"></div>`);
+        for (i=0; i<availableChars.length; i++){
+            $('.oppContain').append(`<div class="opponentsTwo">${availableChars[i].pop}</div>`);
+        }
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">Now it's time to pick your second opponent!</p>`);
-        opponents();
     });
 }
 

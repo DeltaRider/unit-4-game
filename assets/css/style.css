@@ -138,6 +138,18 @@ body, html {
     max-height: 100%;
 }
 
+.opponentsTwo {
+    width: 356px;
+    height: 335px;
+    float: left;
+    border-radius: 25px;
+}
+
+.opponentsTwo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .playContain {
     margin-left: 235px;
 }
