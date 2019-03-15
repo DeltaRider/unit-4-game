@@ -203,6 +203,104 @@ body, html {
     bottom: 300px;
 }
 
+.trophy {
+    position:absolute;
+    left: 90px;
+    bottom: 300px;
+}
+
+.trophies {
+    position: relative;
+}
+
+.trophies img {
+    height: 70px;
+}
+
+.bigTrophy {
+    position: relative;
+}
+
+.bigTrophy img {
+    height: 540px;
+}
+
+.bigTrophy p {
+    font-family: maintext;
+    font-size: 20px;
+}
+
+#pone{
+    position: absolute;
+    left: 245px;
+    top: 445px;
+    color: white;
+}
+
+#ptwo{
+    position: absolute;
+    left: 250px;
+    top: 465px;
+    color: white;
+}
+
+.bigTrophy h5 {
+    font-family: maintext;
+    position: absolute;
+    font-size: 40px;
+    left: 250px;
+    top: 397px;
+    color: white;
+}
+
+#bigT {
+    position: absolute;
+    left: 114px;
+    top: 42px; 
+}
+
+#trophyOne {
+    position: absolute;
+    left: 76px;
+    top: 42px;
+    
+}
+
+#trophyTwo {
+    position: absolute;
+    left: 76px;
+    top: 259px;
+    
+}
+
+#trophyThree {
+    position: absolute;
+    left: 76px;
+    top: 478px;
+    
+}
+
+#trophyFour {
+    position: absolute;
+    left: 646px;
+    top: 42px;
+    
+}
+
+#trophyFive {
+    position: absolute;
+    left: 646px;
+    top: 259px;
+    
+}
+
+#trophySix {
+    position: absolute;
+    left: 646px;
+    top: 478px;
+    
+}
+
 #charCash {
     position:absolute;
     right: 518px;
@@ -260,14 +358,16 @@ body, html {
   .popup-content {
     /*Hides pop-up content when there is no "active" class */
    visibility:hidden;
+   position: relative;
   }
 
   .popup-content.active {
     /*Shows pop-up content when "active" class is present */
     visibility:visible;
+    position: relative;
   }
 
-  .choose, .exit, .chooseTwo {
+  .choose, .exit, .chooseTwo, .newgame, .leave {
     display:inline-block;
     vertical-align:middle;
     border-radius:30px;
@@ -279,7 +379,7 @@ body, html {
     text-decoration: none; 
   }
   
-  .choose:hover, .exit:hover, .chooseTwo:hover {
+  .choose:hover, .exit:hover, .chooseTwo:hover, .newgame:hover, .leave:hover {
     border:1px solid #666666;
     background:#666666;
     color:#ffffff;

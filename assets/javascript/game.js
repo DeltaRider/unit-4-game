@@ -58,6 +58,7 @@ var playAttack = true;
 var availableChars = ["Crackhead", "Drug Dealer", "Hoe", "Pimp"];
 var availableChars = [crackhead, dealer, hoe, pimp];
 var flagOne;
+var sixTrophies = ["trophyOne", "trophyTwo", "trophyThree", "trophyFour", "trophyFive", "trophySix"]
 
 function chooseChar(){
     document.onkeypress = function(e){
@@ -142,6 +143,10 @@ function oppMusic(){
 
 function gameMusic(){
     $("#song").html(firstOpp.song);
+}
+
+function trophyMusic(){
+    $("#song").html(`<audio controls style="display:none" autoplay><source src="assets/audio/trophysong.mp3" type="audio/mpeg"></audio>`);
 }
 
 function opponents(){
@@ -450,8 +455,8 @@ function thirdCounterAttack(){
         playAttack = false;
         $(".topboxTwo").html(`<p class="toptextTwo">Third Round Winner!</p>`);
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${thirdOpp.name}!</p>`);
-        $(".attack").text("Collect Your Trophy!");
-        chooseOppThree();
+        $(".attack").text("Collect Your Trophy!").attr('class', 'trophy');
+        trophyCeremony();
     } else {
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${thirdOpp.name} counter attacked with ${thirdOpp.attack}!</p>`);
         playAttack = true;    
@@ -459,3 +464,39 @@ function thirdCounterAttack(){
         $("#charCash").html(`$${playerCashTwo}`);
     }
 }
+
+function trophyPop(){
+    $(".popup-content").prepend(`<div class="bigTrophy"></div>`);
+    $(".bigTrophy").append(`<img id="bigT" src="assets/images/trophy.gif" alt="trophy">`)
+}
+
+function master(){
+    $(".bigTrophy").append(`<p id="pone">You teamed up with a ${character.name}</p>
+    <p id="ptwo">to become a dook&eacute;mon master!`)
+}
+
+function congrats(){
+    $(".bigTrophy").append(`<h5>Congratulations</h5>`)
+}
+
+function trophyCeremony(){
+    $(document).on("click", ".trophy", function(){
+        setTimeout(trophyMusic, 1000);
+        $(".card").html(character.image);
+        $(".popup-content").prepend(`<div class="trophies"></div>`);
+        for (i=0; i<sixTrophies.length; i++){
+            $(".trophies").append(`<img id="${sixTrophies[i]}" src="assets/images/slowtrophy.gif" alt="trophy">`)
+        };
+        $(".popup-overlay, .popup-content").addClass("active");
+        $("#midbox").html(`<div class="oppContain"></div>`);
+        $(".chooseTwo").text("New Game").attr("class", "newgame");
+        $(".exit").text("Leave Site").attr("class", "leave");
+        setTimeout(trophyPop, 12200);
+        setTimeout(master, 14000);
+        setTimeout(congrats, 17000);
+    }).on("click", ".newgame", function(){
+        location.reload();
+    }).on("click", ".leave", function(){
+        location.href = "http://www.trillgeek.com"
+    });
+};
