@@ -1,7 +1,7 @@
 var spacebar = true;
 var character;
 var firstOpp;
-var oppTwo;
+var secondOpp;
 var oppThree;
 var charAttackPower;
 var oppAttackPower;
@@ -52,10 +52,12 @@ var pimp = {
     crack: 1,
 }
 var playerCash;
+var playerCashTwo;
 var opponentCash;
 var playAttack = true;
-// var availableChars = ["Crackhead", "Drug Dealer", "Hoe", "Pimp"];
+var availableChars = ["Crackhead", "Drug Dealer", "Hoe", "Pimp"];
 var availableChars = [crackhead, dealer, hoe, pimp];
+var flagOne;
 
 function chooseChar(){
     document.onkeypress = function(e){
@@ -65,8 +67,8 @@ function chooseChar(){
             <div id="hoe" class="choice"></div>
             <div id="pimp" class="choice"></div>
             `);
-            // $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/choosechar.mp3" type="audio/mpeg"></audio>`);
-            // $("#song").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charsong.mp3" type="audio/mpeg"></audio>`);
+            $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/choosechar.mp3" type="audio/mpeg"></audio>`);
+            $("#song").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charsong.mp3" type="audio/mpeg"></audio>`);
             $(".topbox").removeClass();
             $(".toptext").removeClass();
             $("#topbox").addClass("topboxTwo");
@@ -107,7 +109,7 @@ function chooseChar(){
             });
             $(".choose").on("click", function(){
                 setTimeout(killMusic, 1400);
-                // $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
+                $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
                 chooseOpp();
                 $(".popup-overlay, .popup-content").removeClass("active");
             });
@@ -135,11 +137,11 @@ function killMusic(){
 }
 
 function oppMusic(){
-    // $("#song").html(`<audio controls style="display:none" autoplay><source src="assets/audio/enemysong.mp3" type="audio/mpeg"></audio>`);
+    $("#song").html(`<audio controls style="display:none" autoplay><source src="assets/audio/enemysong.mp3" type="audio/mpeg"></audio>`);
 }
 
 function gameMusic(){
-    // $("#song").html(firstOpp.song);
+    $("#song").html(firstOpp.song);
 }
 
 function opponents(){
@@ -166,6 +168,7 @@ function opponents(){
         firstOpp = crackhead;
         charAttackPower = character.crack;
         oppAttackPower = firstOpp[character.nickname];
+        flagOne = true;
     });
     $("#dshadow").on("click", function(){
         $(".card").html(`<img src="assets/images/dookemon-drugdealer.png" alt="Drug Dealer">`);
@@ -173,6 +176,7 @@ function opponents(){
         firstOpp = dealer;
         charAttackPower = character.dealer;
         oppAttackPower = firstOpp[character.nickname];
+        flagOne = true;
     });
     $("#hshadow").on("click", function(){
         $(".card").html(`<img src="assets/images/dookemon-hoe.png" alt="Hoe">`);
@@ -180,6 +184,7 @@ function opponents(){
         firstOpp = hoe;
         charAttackPower = character.hoe;
         oppAttackPower = firstOpp[character.nickname];
+        flagOne = true;
     });
     $("#pshadow").on("click", function(){
         $(".card").html(`<img src="assets/images/dookemon-pimp.png" alt="Pimp">`);
@@ -187,22 +192,29 @@ function opponents(){
         firstOpp = pimp;
         charAttackPower = character.pimp;
         oppAttackPower = firstOpp[character.nickname];
+        flagOne = true;
     });
     $(".exit").on("click", function(){
         $(".popup-overlay, .popup-content").removeClass("active");
     });
     $(".choose").on("click", function(){
         setTimeout(killMusic, 1400);
-        // $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
+        $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
         availableChars = availableChars.filter(e => e !== character);
         availableChars = availableChars.filter(e => e !== firstOpp);
-        play();
+        $(".choose").attr('class', 'chooseTwo');
+        if (flagOne = true){
+            play();
+        };
         $(".popup-overlay, .popup-content").removeClass("active");
     });
 }
 
 function play(){
     setTimeout(gameMusic, 1400);
+    flagOne = false;
+    playerCash = character.cash;
+    opponentCash = firstOpp.cash;
     $(".topboxTwo").html(`<p class="toptextTwo">Now let's fight!</p>`);
     $("#midbox").html(`<button class="attack">Attack</button>
     <div id="charCash"></div>
@@ -211,8 +223,8 @@ function play(){
     <div id="fighter" class="regPlay"></div>
     <div id="defender" class="regPlay"></div>
     </div>`);
-    $("#charCash").html(`$${character.cash}`);
-    $("#oppCash").html(`$${firstOpp.cash}`);
+    $("#charCash").html(`$${playerCash}`);
+    $("#oppCash").html(`$${opponentCash}`);
     $("#fighter").html(character.image);
     $("#defender").html(firstOpp.image);
     $(".bottomboxTwo").html(`<p class="bottomtextTwo">Click attack to start ${character.attack} on that ${firstOpp.name}!</p>`);
@@ -220,8 +232,6 @@ function play(){
 }
 
 function firstFight(){
-    playerCash = character.cash;
-    opponentCash = firstOpp.cash;
     $(".attack").on("click", function(){
         if (playAttack == true){
             $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${firstOpp.name}!</p>`);
@@ -229,7 +239,7 @@ function firstFight(){
             opponentCash -= charAttackPower;
             $("#oppCash").html(`$${opponentCash}`);
             playAttack = false;
-            setTimeout(firstCounterAttack, 3000);
+            setTimeout(firstCounterAttack, 2000);
         }
     });
 }
@@ -240,7 +250,8 @@ function firstCounterAttack(){
         playAttack = false;
         $(".topboxTwo").html(`<p class="toptextTwo">First Round Winner!</p>`);
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${firstOpp.name}!</p>`);
-        $(".attack").text("Choose Next Opponent");
+        $(".attack").text("Choose Next Opponent").attr('class', 'attackTwo');
+        playerCashTwo = playerCash
         chooseOppTwo();
     } else {
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${firstOpp.name} counter attacked with ${firstOpp.attack}!</p>`);
@@ -251,19 +262,9 @@ function firstCounterAttack(){
 }
 
 function chooseOppTwo(){
-    $(".attack").on("click", function(){
+    $(".attackTwo").on("click", function(){
         setTimeout(oppMusic, 1400);
         $(".topboxTwo").html(`<p class="toptextTwo">${character.name}'s Next Opponent!</p>`);
-        $(".container").prepend(`<!--Creates the popup body-->
-        <div class="popup-overlay">
-            <!--Creates the popup content-->
-            <div class="popup-content">
-                <div class="card"></div>
-                <!--popup's close button-->
-                <button class="choose">Choose</button>
-                <button class="exit">Exit</button>       
-            </div>
-        </div>`);
         $("#midbox").html(`<div class="oppContain"></div>`);
         for (i=0; i<availableChars.length; i++){
             $('.oppContain').append(`<div class="opponentsTwo">${availableChars[i].pop}</div>`);
@@ -273,31 +274,188 @@ function chooseOppTwo(){
     $(document).on("click", "#cshadow", function(){
         $(".card").html(`<img src="assets/images/dookemon-crackhead.png" alt="Crackhead">`);
         $(".popup-overlay, .popup-content").addClass("active");
-        character = crackhead;
+        secondOpp = crackhead;
+        charAttackPower = character.crack;
+        oppAttackPower = secondOpp[character.nickname];
     });
     $(document).on("click", "#dshadow", function(){
         $(".card").html(`<img src="assets/images/dookemon-drugdealer.png" alt="Drug Dealer">`);
         $(".popup-overlay, .popup-content").addClass("active");
-        character = dealer;
+        secondOpp = dealer;
+        charAttackPower = character.dealer;
+        oppAttackPower = secondOpp[character.nickname];
     });
     $(document).on("click", "#hshadow", function(){
         $(".card").html(`<img src="assets/images/dookemon-hoe.png" alt="Hoe">`);
         $(".popup-overlay, .popup-content").addClass("active");
-        character = hoe;
+        secondOpp = hoe;
+        charAttackPower = character.hoe;
+        oppAttackPower = secondOpp[character.nickname];
     });
     $(document).on("click", "#pshadow", function(){
         $(".card").html(`<img src="assets/images/dookemon-pimp.png" alt="Pimp">`);
         $(".popup-overlay, .popup-content").addClass("active");
-        character = pimp;
+        secondOpp = pimp;
+        charAttackPower = character.pimp;
+        oppAttackPower = secondOpp[character.nickname];
     });
     $(".exit").on("click", function(){
         $(".popup-overlay, .popup-content").removeClass("active");
     });
-    $(".choose").on("click", function(){
+    $(document).on("click",".chooseTwo", function(){
         setTimeout(killMusic, 1400);
-        // $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
-        chooseOpp();
+        opponentCash = secondOpp.cash;
+        $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
+        availableChars = availableChars.filter(e => e !== secondOpp);
+        playTwo();
         $(".popup-overlay, .popup-content").removeClass("active");
     });
 }
 
+function playTwo(){
+    setTimeout(gameMusic, 1400);
+    $(".topboxTwo").html(`<p class="toptextTwo">Now let's fight!</p>`);
+    $("#midbox").html(`<button class="attack">Attack</button>
+    <div id="charCash"></div>
+    <div id="oppCash"></div>
+    <div class="playContain">
+    <div id="fighter" class="regPlay"></div>
+    <div id="defender" class="regPlay"></div>
+    </div>`);
+    $("#charCash").html(`$${playerCashTwo}`);
+    $("#oppCash").html(`$${opponentCash}`);
+    $("#fighter").html(character.image);
+    $("#defender").html(secondOpp.image);
+    $(".bottomboxTwo").html(`<p class="bottomtextTwo">Click attack to start ${character.attack} on that ${secondOpp.name}!</p>`);
+    playAttack = true;
+    secondFight();
+}
+
+function secondFight(){
+    opponentCash = secondOpp.cash;
+    $(".attack").on("click", function(){
+        if (playAttack == true){
+            $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${secondOpp.name}!</p>`);
+            console.log("attack");
+            opponentCash -= charAttackPower;
+            $("#oppCash").html(`$${opponentCash}`);
+            playAttack = false;
+            setTimeout(secondCounterAttack, 2000);
+        }
+    });
+}
+
+function secondCounterAttack(){
+    console.log("Counter attack");
+    if (opponentCash < 1){
+        playAttack = false;
+        $(".topboxTwo").html(`<p class="toptextTwo">Second Round Winner!</p>`);
+        $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${secondOpp.name}!</p>`);
+        $(".attack").text("Choose Next Opponent").attr('class', 'attackThree');;
+        chooseOppThree();
+    } else {
+        $(".bottomboxTwo").html(`<p class="bottomtextTwo">${secondOpp.name} counter attacked with ${secondOpp.attack}!</p>`);
+        playAttack = true;    
+        playerCashTwo -= oppAttackPower;
+        $("#charCash").html(`$${playerCashTwo}`);
+    }
+}
+
+function chooseOppThree(){
+    $(document).on("click", ".attackThree", function(){
+        setTimeout(oppMusic, 1400);
+        $(".topboxTwo").html(`<p class="toptextTwo">${character.name}'s Next Opponent!</p>`);
+        $("#midbox").html(`<div class="oppContain"></div>`);
+        for (i=0; i<availableChars.length; i++){
+            $('.oppContain').append(`<div class="opponentsThree">${availableChars[i].pop}</div>`);
+        }
+        $(".bottomboxTwo").html(`<p class="bottomtextTwo">Now it's time to pick your third opponent!</p>`);
+    });
+    $(document).on("click", "#cshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-crackhead.png" alt="Crackhead">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        thirdOpp = crackhead;
+        charAttackPower = character.crack;
+        oppAttackPower = thirdOpp[character.nickname];
+    });
+    $(document).on("click", "#dshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-drugdealer.png" alt="Drug Dealer">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        thirdOpp = dealer;
+        charAttackPower = character.dealer;
+        oppAttackPower = thirdOpp[character.nickname];
+    });
+    $(document).on("click", "#hshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-hoe.png" alt="Hoe">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        thirdOpp = hoe;
+        charAttackPower = character.hoe;
+        oppAttackPower = thirdOpp[character.nickname];
+    });
+    $(document).on("click", "#pshadow", function(){
+        $(".card").html(`<img src="assets/images/dookemon-pimp.png" alt="Pimp">`);
+        $(".popup-overlay, .popup-content").addClass("active");
+        thirdOpp = pimp;
+        charAttackPower = character.pimp;
+        oppAttackPower = thirdOpp[character.nickname];
+    });
+    $(".exit").on("click", function(){
+        $(".popup-overlay, .popup-content").removeClass("active");
+    });
+    $(document).on("click",".chooseTwo", function(){
+        setTimeout(killMusic, 1400);
+        opponentCash = thirdOpp.cash;
+        $("#sound").html(`<audio controls style="display:none" autoplay><source src="assets/audio/charselected.mp3" type="audio/mpeg"></audio>`);
+        playThree();
+        $(".popup-overlay, .popup-content").removeClass("active");
+    });
+}
+
+function playThree(){
+    setTimeout(gameMusic, 1400);
+    $(".topboxTwo").html(`<p class="toptextTwo">Now let's fight!</p>`);
+    $("#midbox").html(`<button class="attack">Attack</button>
+    <div id="charCash"></div>
+    <div id="oppCash"></div>
+    <div class="playContain">
+    <div id="fighter" class="regPlay"></div>
+    <div id="defender" class="regPlay"></div>
+    </div>`);
+    $("#charCash").html(`$${playerCashTwo}`);
+    $("#oppCash").html(`$${opponentCash}`);
+    $("#fighter").html(character.image);
+    $("#defender").html(thirdOpp.image);
+    $(".bottomboxTwo").html(`<p class="bottomtextTwo">Click attack to start ${character.attack} on that ${thirdOpp.name}!</p>`);
+    playAttack = true;
+    thirdFight();
+}
+
+function thirdFight(){
+    opponentCash = thirdOpp.cash;
+    $(".attack").on("click", function(){
+        if (playAttack == true){
+            $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${thirdOpp.name}!</p>`);
+            console.log("attack");
+            opponentCash -= charAttackPower;
+            $("#oppCash").html(`$${opponentCash}`);
+            playAttack = false;
+            setTimeout(thirdCounterAttack, 2000);
+        }
+    });
+}
+
+function thirdCounterAttack(){
+    console.log("Counter attack");
+    if (opponentCash < 1){
+        playAttack = false;
+        $(".topboxTwo").html(`<p class="toptextTwo">Third Round Winner!</p>`);
+        $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${thirdOpp.name}!</p>`);
+        $(".attack").text("Collect Your Trophy!");
+        chooseOppThree();
+    } else {
+        $(".bottomboxTwo").html(`<p class="bottomtextTwo">${thirdOpp.name} counter attacked with ${thirdOpp.attack}!</p>`);
+        playAttack = true;    
+        playerCashTwo -= oppAttackPower;
+        $("#charCash").html(`$${playerCashTwo}`);
+    }
+}

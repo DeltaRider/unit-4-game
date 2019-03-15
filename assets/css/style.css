@@ -150,6 +150,18 @@ body, html {
     max-height: 100%;
 }
 
+.opponentsThree {
+    width: 711px;
+    height: 335px;
+    float: left;
+    border-radius: 25px;
+}
+
+.opponentsThree img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .playContain {
     margin-left: 235px;
 }
@@ -174,6 +186,18 @@ body, html {
 }
 
 .attack {
+    position:absolute;
+    left: 90px;
+    bottom: 300px;
+}
+
+.attackTwo {
+    position:absolute;
+    left: 90px;
+    bottom: 300px;
+}
+
+.attackThree {
     position:absolute;
     left: 90px;
     bottom: 300px;
@@ -243,7 +267,7 @@ body, html {
     visibility:visible;
   }
 
-  .choose, .exit {
+  .choose, .exit, .chooseTwo {
     display:inline-block;
     vertical-align:middle;
     border-radius:30px;
@@ -255,7 +279,7 @@ body, html {
     text-decoration: none; 
   }
   
-  .choose:hover, .exit:hover {
+  .choose:hover, .exit:hover, .chooseTwo:hover {
     border:1px solid #666666;
     background:#666666;
     color:#ffffff;
