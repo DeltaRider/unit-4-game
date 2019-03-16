@@ -228,6 +228,23 @@ body, html {
 .bigTrophy p {
     font-family: maintext;
     font-size: 20px;
+
+}
+
+.lost {
+    position: absolute;
+    left: 140px;
+    top: 234px;
+}
+
+.lost p {
+    font-family: maintext;
+    font-size: 20px;
+}
+
+.lost h5 {
+    font-family: maintext;
+    font-size: 40px;
 }
 
 #pone{

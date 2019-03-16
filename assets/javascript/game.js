@@ -16,7 +16,7 @@ var crackhead = {
     nickname: "crack",
     dealer: 50,
     hoe: 100,
-    pimp: 200,
+    pimp: 250,
 }
 var dealer = {
     name: "Drug Dealer",
@@ -25,9 +25,9 @@ var dealer = {
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/dealersong.mp3" type="audio/mpeg"></audio>`,
     attack: "Slangin' Dope",
     power: "Hustlin",
-    cash: 100,
+    cash: 200,
     nickname: "dealer",
-    crack: 20,
+    crack: 5,
 }
 var hoe = {
     name: "Hoe",
@@ -36,7 +36,7 @@ var hoe = {
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/hoesong.mp3" type="audio/mpeg"></audio>`,
     attack: "Working Corners",
     power: "Ho'ing",
-    cash: 200,
+    cash: 400,
     nickname: "hoe",
     crack: 1,
 }
@@ -47,7 +47,7 @@ var pimp = {
     song: `<audio controls style="display:none" autoplay><source src="assets/audio/pimpsong.mp3" type="audio/mpeg"></audio>`,
     attack: "Slap & Collect",
     power: "Shinin'",
-    cash: 400,
+    cash: 1000,
     nickname: "pimp",
     crack: 1,
 }
@@ -150,10 +150,13 @@ function trophyMusic(){
 }
 
 function cashCheck(){
-    if (playerCash < 1){
+    if (playerCash <= 0){
         playAttack = false;
         $(".popup-overlay, .popup-content").addClass("active");
-        $(".card").html("");
+        $(".card").html(`<div class="lost"><h5>You Lost!</h5>
+        <p>You were unable to hold onto your cash in dook&eacute;land.<br><br>
+        Try again, but be careful about when you fight each dook&eacute;mon.</p>
+        </div>`);
         $(".midbox").html("");
         $(".chooseTwo").text("New Game").attr("class", "newgame");
         $(".exit").text("Leave Site").attr("class", "leave");
@@ -167,10 +170,13 @@ function cashCheck(){
 }
 
 function cashCheckTwo(){
-    if (playerCashTwo < 1){
+    if (playerCashTwo <= 0){
         playAttack = false;
         $(".popup-overlay, .popup-content").addClass("active");
-        $(".card").html("");
+        $(".card").html(`<div class="lost"><h5>You Lost!</h5>
+        <p>You were unable to hold onto your cash in dook&eacute;land.<br><br>
+        Try again, but be careful about when you fight each dook&eacute;mon.</p>
+        </div>`);
         $(".midbox").html("");
         $(".chooseTwo").text("New Game").attr("class", "newgame");
         $(".exit").text("Leave Site").attr("class", "leave");
@@ -285,7 +291,7 @@ function firstFight(){
 
 function firstCounterAttack(){
     console.log("Counter attack");
-    if (opponentCash < 1){
+    if (opponentCash <= 0){
         playAttack = false;
         $(".topboxTwo").html(`<p class="toptextTwo">First Round Winner!</p>`);
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${firstOpp.name}!</p>`);
@@ -374,7 +380,7 @@ function playTwo(){
 function secondFight(){
     opponentCash = secondOpp.cash;
     $(".attack").on("click", function(){
-        if (playAttack == true && playerCashTwo > 1){
+        if (playAttack == true && playerCashTwo >= 1){
             $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${secondOpp.name}!</p>`);
             console.log("attack");
             opponentCash -= charAttackPower;
@@ -387,7 +393,7 @@ function secondFight(){
 
 function secondCounterAttack(){
     console.log("Counter attack");
-    if (opponentCash < 1){
+    if (opponentCash <= 0){
         playAttack = false;
         $(".topboxTwo").html(`<p class="toptextTwo">Second Round Winner!</p>`);
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${secondOpp.name}!</p>`);
@@ -474,7 +480,7 @@ function playThree(){
 function thirdFight(){
     opponentCash = thirdOpp.cash;
     $(".attack").on("click", function(){
-        if (playAttack == true && playerCashTwo > 1){
+        if (playAttack == true && playerCashTwo >= 1){
             $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${thirdOpp.name}!</p>`);
             console.log("attack");
             opponentCash -= charAttackPower;
@@ -487,7 +493,7 @@ function thirdFight(){
 
 function thirdCounterAttack(){
     console.log("Counter attack");
-    if (opponentCash < 1){
+    if (opponentCash <= 0){
         playAttack = false;
         $(".topboxTwo").html(`<p class="toptextTwo">Third Round Winner!</p>`);
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${thirdOpp.name}!</p>`);
