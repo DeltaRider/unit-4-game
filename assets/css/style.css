@@ -386,6 +386,18 @@ body, html {
     text-decoration: none;
   }
 
+  .newgame {
+    position: absolute;
+    left: 255px;
+    top: 410px;
+  }
+
+  .leave {
+    position: absolute;
+    left: 417px;
+    top: 410px;
+}
+
   .card img {
     width: auto;
     max-height: 600px;   

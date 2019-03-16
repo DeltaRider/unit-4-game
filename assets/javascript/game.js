@@ -27,7 +27,7 @@ var dealer = {
     power: "Hustlin",
     cash: 100,
     nickname: "dealer",
-    crack: 9,
+    crack: 20,
 }
 var hoe = {
     name: "Hoe",
@@ -149,6 +149,40 @@ function trophyMusic(){
     $("#song").html(`<audio controls style="display:none" autoplay><source src="assets/audio/trophysong.mp3" type="audio/mpeg"></audio>`);
 }
 
+function cashCheck(){
+    if (playerCash < 1){
+        playAttack = false;
+        $(".popup-overlay, .popup-content").addClass("active");
+        $(".card").html("");
+        $(".midbox").html("");
+        $(".chooseTwo").text("New Game").attr("class", "newgame");
+        $(".exit").text("Leave Site").attr("class", "leave");
+    }
+    $(document).on("click", ".newgame", function(){
+        location.reload();
+    })
+    $(document).on("click", ".leave", function(){
+        location.href = "http://www.trillgeek.com"
+    });
+}
+
+function cashCheckTwo(){
+    if (playerCashTwo < 1){
+        playAttack = false;
+        $(".popup-overlay, .popup-content").addClass("active");
+        $(".card").html("");
+        $(".midbox").html("");
+        $(".chooseTwo").text("New Game").attr("class", "newgame");
+        $(".exit").text("Leave Site").attr("class", "leave");
+    }
+    $(document).on("click", ".newgame", function(){
+        location.reload();
+    })
+    $(document).on("click", ".leave", function(){
+        location.href = "http://www.trillgeek.com"
+    });
+}
+
 function opponents(){
     if (character == crackhead){
         $("#oppOne").html(`<img id="dshadow" src="assets/images/dookemon-drugdealer.png" alt="Drug Dealer">`);
@@ -238,7 +272,7 @@ function play(){
 
 function firstFight(){
     $(".attack").on("click", function(){
-        if (playAttack == true){
+        if (playAttack == true  && playerCash > 1){
             $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${firstOpp.name}!</p>`);
             console.log("attack");
             opponentCash -= charAttackPower;
@@ -263,6 +297,7 @@ function firstCounterAttack(){
         playAttack = true;    
         playerCash -= oppAttackPower;
         $("#charCash").html(`$${playerCash}`);
+        setTimeout(cashCheck, 1000);
     }
 }
 
@@ -339,7 +374,7 @@ function playTwo(){
 function secondFight(){
     opponentCash = secondOpp.cash;
     $(".attack").on("click", function(){
-        if (playAttack == true){
+        if (playAttack == true && playerCashTwo > 1){
             $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${secondOpp.name}!</p>`);
             console.log("attack");
             opponentCash -= charAttackPower;
@@ -356,13 +391,14 @@ function secondCounterAttack(){
         playAttack = false;
         $(".topboxTwo").html(`<p class="toptextTwo">Second Round Winner!</p>`);
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} defeated ${secondOpp.name}!</p>`);
-        $(".attack").text("Choose Next Opponent").attr('class', 'attackThree');;
+        $(".attack").text("Choose Next Opponent").attr('class', 'attackThree');
         chooseOppThree();
     } else {
         $(".bottomboxTwo").html(`<p class="bottomtextTwo">${secondOpp.name} counter attacked with ${secondOpp.attack}!</p>`);
         playAttack = true;    
         playerCashTwo -= oppAttackPower;
         $("#charCash").html(`$${playerCashTwo}`);
+        setTimeout(cashCheckTwo, 1000);
     }
 }
 
@@ -438,7 +474,7 @@ function playThree(){
 function thirdFight(){
     opponentCash = thirdOpp.cash;
     $(".attack").on("click", function(){
-        if (playAttack == true){
+        if (playAttack == true && playerCashTwo > 1){
             $(".bottomboxTwo").html(`<p class="bottomtextTwo">${character.name} used ${character.attack} on that ${thirdOpp.name}!</p>`);
             console.log("attack");
             opponentCash -= charAttackPower;
@@ -462,6 +498,7 @@ function thirdCounterAttack(){
         playAttack = true;    
         playerCashTwo -= oppAttackPower;
         $("#charCash").html(`$${playerCashTwo}`);
+        setTimeout(cashCheckTwo, 1000);
     }
 }
 
